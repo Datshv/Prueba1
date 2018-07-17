@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -22,7 +24,9 @@ public class Test1 {
 		String rutaArchivo = "C:\\Fichero-Excel\\" + nombreArchivo;
 		String hoja = "Hoja1";
  
-		try (FileInputStream file = new FileInputStream(new File(rutaArchivo))) {
+		try  {
+			
+			FileInputStream file = new FileInputStream(new File(rutaArchivo));
 			// leer archivo excel
 			XSSFWorkbook worbook = new XSSFWorkbook(file);
 			//obtener la hoja que se va leer
@@ -45,9 +49,13 @@ public class Test1 {
 				}
 				System.out.println();
 			}
-		} catch (Exception e) {
-			e.getMessage();
-		}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 	@Test
